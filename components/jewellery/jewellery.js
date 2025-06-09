@@ -1,11 +1,11 @@
 "use client"
 
+import Link from 'next/link'
 import React from 'react'
 
 const Jewellery = () => {
     const [jewellery, setJewellery] = React.useState([])
     const [loading, setLoading] = React.useState(true)
-
     const fetchJewellery = async () => {
         try {
             setLoading(true)
@@ -81,9 +81,9 @@ const Jewellery = () => {
                                         </small>
                                     </div>
                                 </div>
-                                <button className="btn btn-primary mt-3">
+                                <Link className="btn btn-primary mt-3" href={`/products/${item.id}`} onClick={()=>{}}>
                                     Add to Cart
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
