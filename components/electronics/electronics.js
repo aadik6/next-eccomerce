@@ -1,5 +1,6 @@
 "use client"
 
+import Link from 'next/link'
 import React from 'react'
 
 const Electronics = () => {
@@ -81,9 +82,9 @@ const Electronics = () => {
                                         </small>
                                     </div>
                                 </div>
-                                <button className="btn btn-primary mt-3">
+                                <Link href={`/products/${item.id}`} className="btn btn-primary mt-3">
                                     Add to Cart
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,52 @@
+.navbarList {
+    overflow-x: auto;   
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE and Edge */
+    padding: 10px;
+}
+.navbarList::before{
+    /* content: "<"; */
+    color: red;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0 10px;
+    background: white;
+    pointer-events: none; 
+    z-index: 1; 
+    display: block;
+}
+.navbarList::after{
+    /* content: ">"; */
+    color: red;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0 10px;
+    background: white;
+    pointer-events: none; /* Prevents interaction with the gradient */
+    z-index: 1; /* Ensures the gradient is above the content */
+    display: block;
+}
+.navbarList::-webkit-scrollbar {
+    display: none;              /* Chrome, Safari, Opera */
+}
+.scrollBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: white;
+  border: none;
+  color: red;
+  font-size: 2rem;
+  padding: 0 10px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.scrollBtn:hover {
+  opacity: 1;
+}

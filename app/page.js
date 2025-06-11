@@ -3,7 +3,6 @@ import React, { Suspense } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Hero from "@/components/hero/hero";
 import { useInView } from "@/hooks/useInView";
-import Cart from "@/components/cart/cart";
 
 const Clothes = React.lazy(() => import("@/components/clothes/clothes"));
 const Electronics = React.lazy(() => import("@/components/electronics/electronics"));

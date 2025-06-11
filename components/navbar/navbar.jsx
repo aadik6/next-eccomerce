@@ -1,6 +1,8 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Cart from "../cart/cart";
+import Link from "next/link";
+import LocationTracker from "../locationTracker/locationTracker";
 
 const Navbar = () => {
   const [categories, setCategories] = React.useState([]);
@@ -10,7 +12,6 @@ const Navbar = () => {
   const [user, setUser] = React.useState(null);
   const [showProfileDropdown, setShowProfileDropdown] = React.useState(false);
 
-  // Mock user data - replace with actual user data from your auth system
   const mockUser = {
     name: "John Doe",
     email: "john.doe@example.com",
@@ -108,9 +109,9 @@ const Navbar = () => {
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container-fluid">
             {/* Brand */}
-            <a className="navbar-brand fw-bold text-primary" href="#" onClick={(e) => e.preventDefault()}>
+            <Link className="navbar-brand fw-bold text-primary" href="/" >
               ShopStore
-            </a>
+            </Link>
 
             {/* Mobile toggle button */}
             <button
@@ -161,6 +162,7 @@ const Navbar = () => {
             </div>
           </div>
         </nav>
+        <LocationTracker />
 
         {/* Right side: Cart and User */}
         <div className="d-flex align-items-center gap-3">
