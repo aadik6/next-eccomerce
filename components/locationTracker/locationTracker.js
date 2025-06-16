@@ -40,7 +40,7 @@ const LocationTracker = () => {
           const res = await fetch(url);
           const data = await res.json();
           const loc = {
-            name: data.display_name,
+            name: data.address.city,
             lat: latitude,
             lon: longitude,
           };
