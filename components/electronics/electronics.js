@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import React from "react";
-import ShareButton from "../shareButton/shareButton";
+import ShareButton from "@/components/shareButton/shareButton";
 
 const Electronics = () => {
   const [electronics, setElectronics] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const [openShareId, setOpenShareId] = React.useState(null);
 
   const fetchElectronics = async () => {
     try {
@@ -53,12 +54,22 @@ const Electronics = () => {
       <div className="row g-4">
         {electronics.map((item) => (
           <div key={item.id} className="col-lg-3 col-md-6 col-sm-12">
-            <div className="card h-100 shadow-sm border-0">
-              {/* Share Button placed here */}
-              <div className="mb-2">
+            <div className="card h-100 shadow-sm border-0 position-relative">
+              {/* Floating Share Button */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: "12px",
+                  right: "12px",
+                  zIndex: 2,
+                }}
+              >
                 <ShareButton
                   title={item.title}
                   link={`https://yourdomain.com/products/${item.id}`}
+                  isOpen={openShareId === item.id}
+                  onOpen={() => setOpenShareId(item.id)}
+                  onClose={() => setOpenShareId(null)}
                 />
               </div>
               <div

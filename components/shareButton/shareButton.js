@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FaWhatsapp, FaFacebook, FaTwitter, FaTelegram,FaShare } from "react-icons/fa";
+import React from 'react';
+import { FaWhatsapp, FaFacebook, FaTwitter, FaTelegram, FaShare } from "react-icons/fa";
 
 const socialPlatforms = [
   {
@@ -28,9 +28,8 @@ const socialPlatforms = [
   },
 ];
 
-const ShareButton = ({ title, description, link, image }) => {
-  const [showOptions, setShowOptions] = useState(false);
-  const [copied, setCopied] = useState(false);
+const ShareButton = ({ title, link, isOpen, onOpen, onClose }) => {
+  const [copied, setCopied] = React.useState(false);
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(link);
@@ -38,23 +37,44 @@ const ShareButton = ({ title, description, link, image }) => {
     setTimeout(() => setCopied(false), 1500);
   };
 
+  // Close menu if clicked outside
+  React.useEffect(() => {
+    if (!isOpen) return;
+    const handleClick = (e) => {
+      if (!e.target.closest('.share-btn-dropdown')) {
+        onClose();
+      }
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [isOpen, onClose]);
+
   return (
     <div style={{ position: "relative", display: "inline-block" }}>
       <button
         className="btn btn-outline-primary"
-        onClick={() => setShowOptions((v) => !v)}
+        onClick={isOpen ? onClose : onOpen}
+        style={{
+          backgroundColor: "#f8f9fa",
+          borderRadius: "50%",
+          padding: "10px",
+          boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
+        }}
       >
         <FaShare className="me-1" />
       </button>
-      {showOptions && (
+      {isOpen && (
         <div
-          className="shadow rounded p-3 bg-white"
+          className="shadow rounded p-3 bg-white share-btn-dropdown"
           style={{
             position: "absolute",
             top: "110%",
-            left: 0,
+            right: 0, // Change from left: 0 to right: 0
             minWidth: "180px",
             zIndex: 100,
+            maxWidth: "calc(100vw - 32px)", // Prevent overflow on small screens
+            boxSizing: "border-box",
+            overflowX: "auto",
           }}
         >
           {socialPlatforms.map((platform) => (
