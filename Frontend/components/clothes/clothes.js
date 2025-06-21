@@ -1,6 +1,4 @@
 "use client";
-
-import useUserLocation from "@/hooks/useUserLocation";
 import Link from "next/link";
 import React from "react";
 
@@ -9,7 +7,6 @@ const Clothes = () => {
   const [womenClothes, setWomenClothes] = React.useState([]);
   const [clothes, setClothes] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
-  const location = useUserLocation();
   const fetchClothes = async () => {
     try {
       setLoading(true);
@@ -47,15 +44,6 @@ const Clothes = () => {
 
   return (
     <div className="container my-5">
-      {location ? (
-        <div>
-          <div>Latitude: {location.lat}</div>
-          <div>Longitude: {location.lon}</div>
-          <div>Name: {location.name}</div>
-        </div>
-      ) : (
-        <div>No location detected yet.</div>
-      )}
       <div className="text-center mb-5">
         <h2 className="display-5 fw-bold text-dark">Featured Clothes</h2>
         <p className="lead text-muted">Discover our premium collection</p>
