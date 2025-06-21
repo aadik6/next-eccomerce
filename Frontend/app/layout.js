@@ -25,9 +25,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} bg-light`}>
         <GoogleOAuthProvider
-          clientId={
-            "493362069656-9kl0fv6ih3d6h7p2dqtl2dku3327uh5f.apps.googleusercontent.com"
-          }
+          clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
         >
           <BootstrapClient />
           <Navbar />
