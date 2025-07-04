@@ -1,4 +1,5 @@
 "use client";
+import useCartStore from "@/stores/cartStore";
 import Link from "next/link";
 import React from "react";
 
@@ -7,6 +8,8 @@ const Clothes = () => {
   const [womenClothes, setWomenClothes] = React.useState([]);
   const [clothes, setClothes] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const { addToCart, cart } = useCartStore();
+
   const fetchClothes = async () => {
     try {
       setLoading(true);
@@ -85,12 +88,15 @@ const Clothes = () => {
                     </small>
                   </div>
                 </div>
-                <Link
-                  href={`/products/${item.id}`}
+                <button
+                  onClick={() => addToCart(item)}
                   className="btn btn-primary mt-3"
+                  disabled={cart.some((cartItem) => cartItem.id === item.id)}
                 >
-                  Add to Cart
-                </Link>
+                  {cart.some((cartItem) => cartItem.id === item.id)
+                    ? "Item in Cart"
+                    : "Add to Cart"}
+                </button>
               </div>
             </div>
           </div>

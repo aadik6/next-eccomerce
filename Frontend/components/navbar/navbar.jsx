@@ -12,7 +12,6 @@ const Navbar = () => {
   const [showProfileDropdown, setShowProfileDropdown] = React.useState(false);
 
   const { user, logout } = useAuthStore();
-  console.log(user, "user from navbar");
 
   const fetchCategories = React.useCallback(async () => {
     try {
